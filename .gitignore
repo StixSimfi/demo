@@ -4,7 +4,6 @@
 *.iml
 *.ipr
 *.log
-*.html
 
 ### Python virtual environment ###
 .venv

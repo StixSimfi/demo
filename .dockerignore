@@ -1,0 +1,5 @@
+poetry.lock
+.venv
+.gitlab-ci.yml
+src
+result

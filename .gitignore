@@ -1,0 +1,26 @@
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.log
+*.html
+
+### Python virtual environment ###
+.venv
+.pytest_cache
+tests/report
+report
+result
+logs
+src/frontend/build
+src/frontend/dist
+src/frontend/config
+src/frontend/node_modules
+*__pycache__
+.env
+*.env
+*.png
+
+### VScode settings ###
+.vscode

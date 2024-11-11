@@ -1,0 +1,52 @@
+services:
+
+  mock:
+    container_name: mock
+    build:
+      context: ../mock_server
+      # dockerfile: backend.Dockerfile (.venv + requirements.txt)
+      dockerfile: poetry.mock.Dockerfile
+    ports:
+      - "8089:8089"
+    volumes:
+      - ../../result/mock/logs:/app/logs
+    command: main.py
+
+  backend:
+    container_name: backend
+    build:
+      context: ../backend
+      # dockerfile: backend.Dockerfile (.venv + requirements.txt)
+      dockerfile: poetry.backend.Dockerfile
+    ports:
+      - "8000:8000"
+    #command: main.py
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    depends_on:
+      - mock
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ../frontend
+      dockerfile: frontend.Dockerfile
+    ports:
+      - "80:80"
+
+  tests:
+    container_name: tests
+    build:
+      context: ../../
+      dockerfile: poetry.test.Dockerfile
+    volumes:
+      - ../../result/tests:/app/result
+    command: ./test.sh
+    depends_on:
+      - mock
+      - backend
+      - frontend
+
+  selenium:
+    image: selenium/standalone-firefox
+    ports:
+      - 4444:4444

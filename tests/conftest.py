@@ -16,7 +16,8 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from .config import (
     _HOST,
     _BACKEND_PORT,
-    _WEB_DRIVER_LAUNCH_PARAMETER
+    _WEB_DRIVER_LAUNCH_PARAMETER,
+    _BACKEND_HOST
 )
 
 
@@ -70,7 +71,7 @@ def create_configurations(request):
     # Разделяем файлы логирования для тестов и клиента
     if request.cls is not None:
         client = Client(
-            f"http://{_HOST}:{_BACKEND_PORT}",
+            f"http://{_BACKEND_HOST}:{_BACKEND_PORT}",
             Log("client_logger", file_handler_level=logging.DEBUG).get_logger()) # noqa
         request.cls._http_client = client
         yield client

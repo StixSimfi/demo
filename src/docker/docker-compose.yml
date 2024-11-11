@@ -41,7 +41,9 @@ services:
     env_file:
       - .remote.env
     volumes:
-      - ../../result/tests:/app/result
+      - ../../result/tests/flake_reports:/app/flake_reports
+      - ../../result/tests/logs:/app/logs
+      - ../../result/tests/allure_reports:/app/allure_reports
     command: ./test.sh
     depends_on:
       - mock

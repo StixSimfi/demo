@@ -21,6 +21,7 @@ src/frontend/node_modules
 .env
 *.env
 *.png
+poetry.lock
 
 ### VScode settings ###
 .vscode

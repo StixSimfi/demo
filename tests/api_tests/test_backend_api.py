@@ -42,7 +42,7 @@ class TestBackendDockerManagerApi:
     @allure.feature('')
     @pytest.mark.api
     def test_getting_container_list(self):
-        resp = self._http_client.get(f"/api/docker-qa-manage/ps")
+        resp = self._http_client.get("/api/docker-qa-manage/ps")
         self._logger.debug(resp.status_code)
         self._logger.debug(resp.text)
         answer = json.loads(resp.text)

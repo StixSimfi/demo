@@ -3,14 +3,17 @@
 @author:    Виноградов Э.Н.
 @copyright: 2024
 """
+import os
+from dotenv import load_dotenv
 
-__HOST = "frontend"
-__BACKEND_PORT = "8000"
 
 """
-__SELENIUM_HUB - параметр содержащий путь к развернутому селениум хабу для тестирования на удаленном сервере для его 
+__SELENIUM_HUB - параметр содержащий путь к развернутому селениум хабу для тестирования на удаленном сервере для его
 использования установите __WEB_DRIVER_LAUNCH_PARAMETER в значение 'remote' или None.
 """
-__SELENIUM_HUB = "http://selenium:4444/wd/hub"
-__WEB_DRIVER_LAUNCH_PARAMETER = "remote"
-#__WEB_DRIVER_LAUNCH_PARAMETER = "local"
+
+load_dotenv()
+_HOST = os.environ.get("__HOST")
+_BACKEND_PORT = os.environ.get("__BACKEND_PORT")
+_WEB_DRIVER_LAUNCH_PARAMETER = os.environ.get("__WEB_DRIVER_LAUNCH_PARAMETER")
+_SELENIUM_HUB = os.environ.get("__SELENIUM_HUB")

@@ -1,4 +1,3 @@
-import os
 import time
 from pathlib import Path
 from typing import List
@@ -49,7 +48,7 @@ class DockerListPageModel(BaseSelenium):
         assert button_obj
         button_obj.click()
         time.sleep(1)
-        self.check_alert(f"will be restarted")
+        self.check_alert("will be restarted")
         time.sleep(2)
         self.get_screenshot(name="check_restart_button_state_restarted.png")
         state_obj = self.is_present('xpath', state_xpath)
@@ -62,4 +61,3 @@ class DockerListPageModel(BaseSelenium):
         print(st)
         print(status_odj.text)
         assert status_odj.text == st
-

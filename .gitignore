@@ -15,8 +15,6 @@ logs
 src/frontend/dist
 src/frontend/node_modules
 *__pycache__
-.env
-*.env
 *.png
 poetry.lock
 

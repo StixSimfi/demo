@@ -14,10 +14,9 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 # Используем алеас для драйвера firefox, что бы при реализации прочих браузеров не возникло пересечений
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from .config import (
-    __HOST,
-    __BACKEND_PORT,
-    __WEB_DRIVER_LAUNCH_PARAMETER,
-    __SELENIUM_HUB
+    _HOST,
+    _BACKEND_PORT,
+    _WEB_DRIVER_LAUNCH_PARAMETER
 )
 
 
@@ -42,11 +41,12 @@ def get_firefox_options() -> FirefoxOptions:
 def get_webdriver(get_firefox_options) -> webdriver:
     options = get_firefox_options
     service = FirefoxService()
-    if __WEB_DRIVER_LAUNCH_PARAMETER == "local":
+    if _WEB_DRIVER_LAUNCH_PARAMETER == "local":
         driver = webdriver.Firefox(options=options, service=service)
     else:
+        from .config import _SELENIUM_HUB
         options.add_argument('headless')
-        driver = webdriver.Remote(command_executor=__SELENIUM_HUB, options=options)
+        driver = webdriver.Remote(command_executor=_SELENIUM_HUB, options=options)
     driver.maximize_window()
     # driver = EventFiringWebDriver(driver, MyListener())
     yield driver
@@ -55,7 +55,7 @@ def get_webdriver(get_firefox_options) -> webdriver:
 @pytest.fixture(scope='class')
 def setup(request, get_webdriver):
     driver: webdriver = get_webdriver
-    url: str = f"http://{__HOST}/"
+    url: str = f"http://{_HOST}/"
     if request.cls is not None:
         request.cls._driver = driver
         driver.get(url)
@@ -70,7 +70,7 @@ def create_configurations(request):
     # Разделяем файлы логирования для тестов и клиента
     if request.cls is not None:
         client = Client(
-            f"http://{__HOST}:{__BACKEND_PORT}",
+            f"http://{_HOST}:{_BACKEND_PORT}",
             Log("client_logger", file_handler_level=logging.DEBUG).get_logger()) # noqa
         request.cls._http_client = client
         yield client

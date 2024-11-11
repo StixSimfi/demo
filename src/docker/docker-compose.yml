@@ -38,6 +38,8 @@ services:
     build:
       context: ../../
       dockerfile: poetry.test.Dockerfile
+    env_file:
+      - .remote.env
     volumes:
       - ../../result/tests:/app/result
     command: ./test.sh

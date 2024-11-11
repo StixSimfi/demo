@@ -13,6 +13,7 @@ locust = "^2.32.2"
 pytest-xdist = "3.6.1"
 flake8 = "^7.1.1"
 selenium = "^4.26.1"
+python-dotenv = "^0.13.0"
 
 
 [build-system]

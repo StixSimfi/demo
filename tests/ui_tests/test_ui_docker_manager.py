@@ -46,9 +46,8 @@ class TestDockerManagerUi:
     @pytest.mark.ui
     def test_restart_command_buttons(self):
         docker_list_page: DockerListPageModel = DockerListPageModel(self._driver)
-        docker_list_page.get_screenshot(name=f"check_restart_button_before.png")
+        docker_list_page.get_screenshot(name="check_restart_button_before.png")
         docker_list_page.check_restart_button(
             "//*/tbody/tr[1]/td[7]/button[3]",
             "//*/tbody/tr[1]/td[2]/strong")
-        docker_list_page.get_screenshot(name=f"check_restart_button_after.png")
-
+        docker_list_page.get_screenshot(name="check_restart_button_after.png")

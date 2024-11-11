@@ -43,3 +43,7 @@ class IClient(ABC):
     @abstractmethod
     def patch(self, route: str, data: Any):
         ...
+
+    @abstractmethod
+    def send(self, route: str, data: Any):
+        ...

@@ -13,7 +13,6 @@ tests/report
 report
 result
 logs
-src/frontend/build
 src/frontend/dist
 src/frontend/config
 src/frontend/node_modules

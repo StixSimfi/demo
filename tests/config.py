@@ -4,7 +4,7 @@
 @copyright: 2024
 """
 
-__HOST = "localhost"
+__HOST = "frontend"
 __BACKEND_PORT = "8000"
 
 """

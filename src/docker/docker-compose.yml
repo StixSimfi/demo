@@ -44,7 +44,7 @@ services:
       - ../../result/tests/flake_reports:/app/flake_reports
       - ../../result/tests/logs:/app/logs
       - ../../result/tests/allure_reports:/app/allure_reports
-    command: ./test.sh
+    command: sh test.sh
     depends_on:
       - mock
       - backend

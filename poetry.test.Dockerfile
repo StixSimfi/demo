@@ -15,5 +15,6 @@ RUN . .venv/bin/activate
 RUN python3 -m pip install --upgrade pip
 RUN pip3 install poetry
 RUN poetry install
+RUN chmod +x test.sh
 
 CMD ["/bin/bash"]

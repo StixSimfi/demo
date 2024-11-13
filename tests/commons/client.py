@@ -80,7 +80,7 @@ class Client(IClient):
         """
         Реализация метода отправки DELETE запроса.
         :param route: URI сервера.
-        :return: requests.Response
+        :return: requests. Response
         """
         response = requests.delete(
             url=self._URL + route
@@ -93,7 +93,7 @@ class Client(IClient):
         Реализация метода отправки PUTCH запроса.
         :param route: URI сервера.
         :param data:
-        :return: requests.Response
+        :return: requests. Response
         """
         response = requests.patch(self._URL + route, json=data)
         self._logger.debug(response.text)  # noqa

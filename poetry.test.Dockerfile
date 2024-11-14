@@ -1,6 +1,6 @@
 FROM python:3.12
 
-RUN mkdir app
+RUN mkdir -p app
 
 WORKDIR /app
 

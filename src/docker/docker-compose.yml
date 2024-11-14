@@ -1,5 +1,10 @@
 services:
 
+  selenium:
+    image: selenium/standalone-firefox
+    ports:
+      - 4444:4444
+
   mock:
     container_name: mock
     build:
@@ -44,13 +49,26 @@ services:
       - ../../result/tests/flake_reports:/app/flake_reports
       - ../../result/tests/logs:/app/logs
       - ../../result/tests/allure_reports:/app/allure_reports
-    command: sh test.sh
+    command: sh tests/scripts/test.sh
     depends_on:
       - mock
       - backend
       - frontend
+      - selenium
 
-  selenium:
-    image: selenium/standalone-firefox
+  performance:
+    container_name: performance
+    build:
+      context: ../../
+      dockerfile: poetry.test.Dockerfile
+    env_file:
+      - .remote.env
+    volumes:
+      - ../../result/tests/performance:/app/results
     ports:
-      - 4444:4444
+      - "8090:8090"
+    command: sh tests/scripts/performance_runner.sh
+    depends_on:
+      - mock
+      - backend
+      - frontend

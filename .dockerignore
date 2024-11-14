@@ -1,8 +1,11 @@
-poetry.lock
 .venv
+.idea
 .gitlab-ci.yml
+
+poetry.lock
 src
 result
 report
 logs
+
 *.png

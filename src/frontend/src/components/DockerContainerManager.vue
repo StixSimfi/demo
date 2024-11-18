@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     async getContainerList() {
-      fetch('http://localhost:8000/api/docker-qa-manage/ps')
+      fetch('http://backend:8000/api/docker-qa-manage/ps')
         .then(resp => resp.json())
         .then((data) => {
           this.containers = data.containers
@@ -77,7 +77,7 @@ export default {
     },
     async driveContainer(command, containerName) {
       alert('Attention! Container '+containerName+' will be '+command+'ed.');
-      fetch('http://localhost:8000/api/docker-qa-manage/'+command+'/'+containerName)
+      fetch('http://backend:8000/api/docker-qa-manage/'+command+'/'+containerName)
         .then(resp => resp.json())
         .then((data) => {
           this.containers = data.containers

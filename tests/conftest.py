@@ -33,6 +33,7 @@ def get_firefox_options() -> FirefoxOptions:
     options.add_argument('--window-size=1650,900')
     # Использовать Agent Spoofing requires для режима headless
     # Модифицируйте user-agent в соответствии с требованиями проекта
+    options.add_argument('--headless')
     options.add_argument(
         'user-agent=[User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0]')
     return options
@@ -46,7 +47,7 @@ def get_webdriver(get_firefox_options) -> webdriver:
         driver = webdriver.Firefox(options=options, service=service)
     else:
         from .config import _SELENIUM_HUB
-        options.add_argument('headless')
+        # options.add_argument('headless')
         driver = webdriver.Remote(command_executor=_SELENIUM_HUB, options=options)
     driver.maximize_window()
     # driver = EventFiringWebDriver(driver, MyListener())

@@ -31,5 +31,5 @@ curl -fH "X-Webhook-Token: 4f69baaf-a498-48a4-8275-405f8a10d175" http://someserv
 - . .venv/bin/activate (для Linux) .venv/Scripts/activate.bat
 - pip install poetry
 - poetry install
-- pytest test -n 4 -q --alluredir=allure_reports
+- pytest tests -n 4 -q --alluredir=allure_reports
 

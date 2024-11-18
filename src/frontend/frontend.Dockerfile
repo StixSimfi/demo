@@ -5,12 +5,13 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json /app/package.json
+COPY .env.production.local /app/.env.production.local
 
 RUN npm install --silent
 # RUN npm install -g @vue/cli@5.0.8
 
 COPY . /app
-RUN npm run build
+RUN npm run build --mode production
 
 # production environment
 FROM nginx:1.16.0-alpine

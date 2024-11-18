@@ -53,7 +53,7 @@ export default {
   name: 'DockerContainerManager',
   data() {
     return {
-      // msg: '',
+      msg: '',
       containers: [],
       timer: '',
       command: ["start", "stop", "restart"],
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     async getContainerList() {
-      fetch('http://localhost:8000/api/docker-qa-manage/ps')
+      fetch('http://'+ process.env.VUE_APP_REMOTE_HOST + ':8000/api/docker-qa-manage/ps')
         .then(resp => resp.json())
         .then((data) => {
           this.containers = data.containers
@@ -77,7 +77,8 @@ export default {
     },
     async driveContainer(command, containerName) {
       alert('Attention! Container '+containerName+' will be '+command+'ed.');
-      fetch('http://localhost:8000/api/docker-qa-manage/'+command+'/'+containerName)
+      this.msg = process.env.VUE_APP_REMOTE_HOST
+      fetch('http://'+ process.env.VUE_APP_REMOTE_HOST + ':8000/api/docker-qa-manage/'+command+'/'+containerName)
         .then(resp => resp.json())
         .then((data) => {
           this.containers = data.containers

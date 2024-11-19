@@ -14,6 +14,7 @@ result
 logs
 src/frontend/dist
 src/frontend/node_modules
+src/frontend/package-lock.json
 *__pycache__
 *.png
 poetry.lock

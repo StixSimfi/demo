@@ -49,6 +49,7 @@ services:
       - ../../result/tests/flake_reports:/app/flake_reports
       - ../../result/tests/logs:/app/logs
       - ../../result/tests/allure_reports:/app/allure_reports
+      - ../../result/tests/screens:/app/screens
     command: sh tests/scripts/test.sh
     depends_on:
       - mock

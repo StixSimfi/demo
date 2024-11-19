@@ -25,11 +25,23 @@ curl -fH "X-Webhook-Token: 4f69baaf-a498-48a4-8275-405f8a10d175" http://someserv
 - Результат прогона тестов будут размещены в директории result.
 
 ## Запуск локально
-Для запуска локально тестирования локально, разверните контейнеры и в директории проекта на локальной машине выполните 
+Для запуска тестирования локально, разверните контейнеры backend, mock и frontend проекта на локальной машине выполните 
 команды в корневой папке проекта:
-- python -m venv .venv
+- cd src/docker && docker compose up -d --build frontend, mock, backend
+- Перейдите в корневую папку проекта и выполните python -m venv .venv
 - . .venv/bin/activate (для Linux) .venv/Scripts/activate.bat
 - pip install poetry
 - poetry install
-- pytest tests -n 4 -q --alluredir=allure_reports
+
+Скоректируйте путь в модуле src/frontend/src/components/DockerContainerManager.vue c 
+
+fetch('http://backend:8000/api/docker-qa-manage/'+command+'/'+containerName) на 
+
+fetch('http://localhost:8000/api/docker-qa-manage/'+command+'/'+containerName)
+
+(Во VUE проекте можно реализовать подстановку данного параметра реализовав запрос из переменных окружения использовав
+
+модуль Dotenv заменив адрес на process.env.APP_VUE_REMOTE_URL)
+
+- pytest tests -q --alluredir=allure_reports
 

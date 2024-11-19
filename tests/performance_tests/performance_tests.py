@@ -1,5 +1,4 @@
 from locust import FastHttpUser, run_single_user, task, between # noqa
-from tests.config import _BACKEND_HOST, _BACKEND_PORT
 
 
 class TestUser(FastHttpUser):
@@ -15,19 +14,19 @@ class TestUser(FastHttpUser):
 
     @task(20)
     def get_list_container(self):
-        self.client.get(f"/api/docker-qa-manage/ps")
+        self.client.get("/api/docker-qa-manage/ps")
 
     @task(2)
     def send_start_command(self):
-        self.client.get(f"/api/docker-qa-manage/start/rabbit")
+        self.client.get("/api/docker-qa-manage/start/rabbit")
 
     @task(2)
     def send_stop_command(self):
-        self.client.get(f"/api/docker-qa-manage/stop/rabbit")
+        self.client.get("/api/docker-qa-manage/stop/rabbit")
 
     @task(1)
     def send_restart_command(self):
-        self.client.get(f"/api/docker-qa-manage/restart/rabbit")
+        self.client.get("/api/docker-qa-manage/restart/rabbit")
 
 
 """

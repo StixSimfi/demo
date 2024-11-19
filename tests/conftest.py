@@ -57,7 +57,10 @@ def get_webdriver(get_firefox_options) -> webdriver:
 @pytest.fixture(scope='class')
 def setup(request, get_webdriver):
     driver: webdriver = get_webdriver
-    url: str = f"http://{_HOST}/"
+    if _WEB_DRIVER_LAUNCH_PARAMETER == "local":
+        url: str = f"http://{_HOST}:8080/"
+    else:
+        url: str = f"http://{_HOST}/"
     if request.cls is not None:
         request.cls._driver = driver
         driver.get(url)

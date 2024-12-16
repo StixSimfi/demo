@@ -16,8 +16,8 @@ class TestDockerManagerUi:
 
     """
 
-    @allure.story('')
-    @allure.feature('')
+    @allure.feature('Наличие заголовка H1')
+    @allure.story('Проверяем наличие заголовка H1 и его соответсвие ожидаемому результату')
     @pytest.mark.ui
     def test_docker_manager_page(self):
         docker_list_page: DockerListPageModel = DockerListPageModel(self._driver)
@@ -26,8 +26,8 @@ class TestDockerManagerUi:
         # Проверяем наличие заголовка H1 и его соответсвие ожидаемому результату
         docker_list_page.check_page_header("Docker Manager")
 
-    @allure.story('')
-    @allure.feature('')
+    @allure.feature('Проверка статуса кнопок управления start, stop')
+    @allure.story('Проверяем работоспособность кнопок start, stop и изменение текстового описания состояния контейнера.')
     @pytest.mark.ui
     @pytest.mark.parametrize("command, pid", [("start", "1"), ("stop", "2")])
     def test_start_stop_command_buttons(self, command: str, pid: str):
@@ -41,8 +41,8 @@ class TestDockerManagerUi:
         docker_list_page.check_container_status("//*/tbody/tr[1]/td[2]/strong", command)
         docker_list_page.get_screenshot(name=f"check_{command}_button_after.png")
 
-    @allure.story('')
-    @allure.feature('')
+    @allure.feature('Проверка статуса кнопок управления restart')
+    @allure.story('Проверяем работоспособность кнопок restart и изменение текстового описания состояния контейнера.')
     @pytest.mark.ui
     def test_restart_command_buttons(self):
         docker_list_page: DockerListPageModel = DockerListPageModel(self._driver)
